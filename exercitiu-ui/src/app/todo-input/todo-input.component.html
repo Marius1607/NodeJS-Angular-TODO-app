@@ -1,0 +1,15 @@
+<div class="input-group-prepend">       
+    <input type="text" class="form-control" placeholder="New item" [(ngModel)]="inputText">      
+    <button class="input-group-text" 
+        (click)="onClickAdd()" 
+        (keyup.enter)="onClickAdd()" 
+        [disabled]="inputText.length==0">
+        ADD
+    </button>
+
+    <button class="input-group-text" 
+        (click)="onDeleteAll()" 
+        (keyup.enter)="onDeleteAll()">
+        DELETE ALL
+    </button>
+</div>

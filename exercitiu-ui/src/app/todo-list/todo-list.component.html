@@ -1,0 +1,8 @@
+<h2 *ngIf="itemList.length==0">Lista este goala</h2>
+<div>  
+    <ul class="list-group">   
+        <li class="list-group-item" *ngFor="let item of itemList.reverse()">{{item.name}}
+            <button class="input-group-text ml-auto mr-1" (click)="onDeleteItem(item.id)">Delete</button>
+        </li>  
+    </ul>  
+</div>
