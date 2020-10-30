@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,10 @@ export class TodoService {
    public deleteAllItems(): Observable<any> {
     return this.http.delete(this.BASE_API_URL + "todo/");
   }
+
+   public editItem(params: object): Observable<any> {
+     var name = params["editText"];
+     console.log("service: " + "itemId: " + params["itemId"] + ", editText: " + params["editText"]);
+     return this.http.put(this.BASE_API_URL + "todo/" + params["itemId"], name);
+   }
 }

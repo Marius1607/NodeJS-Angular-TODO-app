@@ -3,12 +3,13 @@ const mongo = require('mongodb');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+
 const app = express();
 let database = null;
 
 async function initializeCollections(client) {
     database = client.db('exercitiu');
-    await database.createCollection("todo");
+    //await database.createCollection("todo");
 }
 
 app.use(cors());
@@ -21,7 +22,7 @@ mongo.MongoClient.connect("mongodb://127.0.0.1", { useUnifiedTopology: true } , 
     initializeCollections(client);
 
     app.listen(3000, () => {
-        console.log("Server running on port 3000");
+        console.log("Server running on port 3000...");
     });
 });
 
@@ -39,6 +40,20 @@ app.post("/todo/", (req, res) => {
     });
 });
 
+app.put("/todo/:id", (req, res) => {
+    console.log(req.body);
+     database.collection('todo').updateOne(
+        {"_id": mongo.ObjectId(req.params["id"])}, 
+        {$set: {"name": req.params["editText"]} }, 
+        function(err, item) {
+          return res.json({id:item._id});
+        }
+    );
+     
+    //  updateOne({name: req.body.editText}, (err, item) => {
+    //  res.json({id: item.insertedId});
+    //  });
+});
 
 
 app.delete("/todo/:id", (req, res) => {

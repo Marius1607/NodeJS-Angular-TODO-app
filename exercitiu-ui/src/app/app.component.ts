@@ -36,11 +36,17 @@ export class AppComponent implements OnInit {
    }
 
    public onDeleteAll(): void {
-    console.log("test2");
     this.todoService.deleteAllItems().subscribe(() => {
       this.items = [];
     });
   }
+
+   public onEditItem(params: object): void {
+     console.log("app.component" + params["editText"]);
+     this.todoService.editItem(params).subscribe(() => {
+        
+    });
+   }
 
 
 }
