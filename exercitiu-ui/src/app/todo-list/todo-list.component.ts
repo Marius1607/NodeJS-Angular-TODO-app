@@ -24,7 +24,7 @@ export class TodoListComponent {
        itemId: itemId,
        editText: this.editText
      };
-     console.log(toEmit);
+     
      this.editItem.emit(toEmit);
    }
 }

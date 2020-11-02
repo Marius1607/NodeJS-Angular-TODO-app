@@ -1,5 +1,6 @@
 const express = require("express");
 const mongo = require('mongodb');
+const mongoID = require('mongodb').ObjectID;
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -41,10 +42,11 @@ app.post("/todo/", (req, res) => {
 });
 
 app.put("/todo/:id", (req, res) => {
-    console.log(req.body);
+    console.log("request body " + JSON.stringify(req.body));
+    console.log("intra in backend: " + req.params["id"] + "   value: " + req.body.editText);
      database.collection('todo').updateOne(
         {"_id": mongo.ObjectId(req.params["id"])}, 
-        {$set: {"name": req.params["editText"]} }, 
+        {$set: {"name": req.body['editText'] }}, 
         function(err, item) {
           return res.json({id:item._id});
         }

@@ -8,14 +8,18 @@
     });
 });
 </script> -->
+<span *ngIf="itemList.length!=0"> <input type="text" name = "edit-input" class="form-control" placeholder="Edit" [(ngModel)]="editText"> </span>
+<br>
+<br>
 <h2 *ngIf="itemList.length==0">Lista este goala</h2>
 <div>  
     <ul class="list-group">   
-        <li class="list-group-item" *ngFor="let item of itemList.reverse()">{{item.name}}
+            <li class="list-group-item" *ngFor="let item of itemList.reverse()">{{item.name}}
             <button class="input-group-text ml-auto mr-1" (click)="onDeleteItem(item.id)">Delete</button>
-            <input type="text" class="edit-text" placeholder="{{item.name}}" [(ngModel)]="editText">
+            
             <button id="edit-button" (click)="onEditItem(item.id)">Update</button>
-        </li>  
+        </li>
+       
     </ul>  
 </div>
 

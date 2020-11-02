@@ -32,7 +32,7 @@ export class TodoService {
 
    public editItem(params: object): Observable<any> {
      var name = params["editText"];
-     console.log("service: " + "itemId: " + params["itemId"] + ", editText: " + params["editText"]);
-     return this.http.put(this.BASE_API_URL + "todo/" + params["itemId"], name);
+     console.log("service: " + "itemId: " + params["itemId"] + ", editText: " + name);
+     return this.http.put(this.BASE_API_URL + "todo/" + params["itemId"], params);
    }
 }

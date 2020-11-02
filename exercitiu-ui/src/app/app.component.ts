@@ -42,9 +42,11 @@ export class AppComponent implements OnInit {
   }
 
    public onEditItem(params: object): void {
-     console.log("app.component" + params["editText"]);
+     console.log("app.component" + params["editText"] + "    " +  params["itemId"]);
+     console.log("dsdasd :" + JSON.stringify(this.items.filter((item) => item.id === params["itemId"])));
      this.todoService.editItem(params).subscribe(() => {
-        
+      this.items.filter((item) => item.id === params["itemId"])[0].name = params["editText"];
+     // filter((item) => item.id != params["itemId"]);
     });
    }
 
